@@ -1,10 +1,11 @@
 import React from 'react';
 import '../css/style.css';
+import {CalculatorConstructor} from './components/CalculatorConstructor';
 
 function App() {
 	return (
-		<div>
-			<div className="h-screen w-full">App</div>
+		<div className="pt-[38px] pl-[76px] pr-[80px]">
+			<CalculatorConstructor />
 		</div>
 	);
 }

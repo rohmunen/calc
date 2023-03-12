@@ -14,8 +14,18 @@
 		"resolveJsonModule": true,
 		"isolatedModules": true,
 		"noEmit": true,
-		"jsx": "react-jsx"
+		"jsx": "react-jsx",
+		"baseUrl": ".",
+		"paths": {
+			"~/*": ["./app/*"]
+		}
 	},
-	"include": ["./app/src", "./app/css", "./app/css/tailwind.config.cjs"],
+	"include": [
+		"./app/src",
+		"./app/css",
+		"./app/assets",
+		"./app/css/tailwind.config.cjs",
+		"./app/svg.d.ts"
+	],
 	"references": [{"path": "./tsconfig.node.json"}]
 }
