@@ -7,16 +7,19 @@ import {TabsBar} from '../TabsBar';
 import {constructorTabs} from './constants';
 import {Parts} from './Parts';
 import _ from 'lodash';
-import {DragOver, IDroppableContext} from '~/src/types';
-
-export const DroppableContext = React.createContext<IDroppableContext | null>(
-	null
-);
+import {DragOver} from '~/src/types';
+import {useAppDispatch, useAppSelector} from '~/src/hooks';
+import {
+	resetIsDragging,
+	selectIsDragging,
+	selectIsOver,
+	setIsDragging,
+} from '~/src/store/slices/ui';
+import {DropPositionLine} from '../DroppableArea/DropPositionLine';
 
 export const CalculatorConstructor = () => {
 	const [selectedTab, setSelectedTab] = useState(1);
 	const [constructed, setConstructed] = useState<typeof Parts>([]);
-	const [isDragging, setIsDragging] = useState(false);
 	const [draggingOver, setDraggingOver] = useState<DragOver | undefined>();
 
 	const handlePartDrop = (droppedId: string) => {
@@ -68,9 +71,9 @@ export const CalculatorConstructor = () => {
 		}
 	};
 
-	useEffect(() => {
-		console.log(draggingOver);
-	});
+	const dispatch = useAppDispatch();
+	const {isDragging} = useAppSelector(selectIsDragging);
+	const {isOver} = useAppSelector(selectIsOver);
 
 	return (
 		<div className="flex flex-col gap-[30px] w-full max-w-[540px]">
@@ -85,6 +88,17 @@ export const CalculatorConstructor = () => {
 				<PartsContainer>
 					{Parts.map((part) => (
 						<DraggableContainer
+							onDragStart={() => {
+								dispatch(
+									setIsDragging({
+										dragging: true,
+										droppableAreasIds: ['calculatorConstructor'],
+									})
+								);
+							}}
+							onDragEnd={() => {
+								dispatch(resetIsDragging());
+							}}
 							setDraggingOver={setDraggingOver}
 							variant={
 								_.find(constructed, part)
@@ -99,18 +113,32 @@ export const CalculatorConstructor = () => {
 					))}
 				</PartsContainer>
 				<DroppableArea
-					isDragging={isDragging}
+					id={'calculatorConstructor'}
 					onDrop={(droppedId) => {
 						handlePartDrop(droppedId);
 					}}
 				>
-					{constructed.length > 0 ? (
-						constructed.map((part) => (
+					{constructed.map((part) => (
+						<div key={part.id} className="relative">
+							{part.id === draggingOver?.id && (
+								<DropPositionLine
+									position={
+										draggingOver.side === 'Top'
+											? DropPositionLine.position.TOP
+											: DropPositionLine.position.BOT
+									}
+								/>
+							)}
+							{isOver &&
+								!draggingOver &&
+								part.id === constructed[constructed.length - 1].id && (
+									<DropPositionLine position={DropPositionLine.position.BOT} />
+								)}
+							{}
 							<DraggableContainer
 								setDraggingOver={setDraggingOver}
 								variant={DraggableContainer.variant.IN_CONSTRUCTOR}
 								id={part.id}
-								key={part.id}
 								onDoubleClickHandler={() => {
 									setConstructed((prev) =>
 										prev.filter((currentPart) => currentPart.id !== part.id)
@@ -119,10 +147,8 @@ export const CalculatorConstructor = () => {
 							>
 								{part.element}
 							</DraggableContainer>
-						))
-					) : (
-						<Placeholder />
-					)}
+						</div>
+					))}
 				</DroppableArea>
 			</div>
 		</div>
