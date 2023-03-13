@@ -43,5 +43,5 @@ export const BUTTON_HEIGHT_MAP: Record<ButtonHeight, string> = {
 
 export const BUTTON_COLOR_MAP: Record<ButtonColors, string> = {
 	[ButtonColors.WHITE]: 'bg-white',
-	[ButtonColors.PURPLE]: 'bg-purple text-white',
+	[ButtonColors.PURPLE]: 'bg-purple text-white border-[2px] border-transparent',
 };

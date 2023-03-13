@@ -35,7 +35,7 @@ export const Button = ({
 				BUTTON_HEIGHT_MAP[height],
 				COL_SPAN_MAP[colSpan],
 				BUTTON_COLOR_MAP[color],
-				'flex justify-center items-center border-[1px] border-gray-light rounded-[6px]'
+				'flex focus:border-purple focus:border-[2px] justify-center items-center border-[1px] border-gray-light rounded-[6px]'
 			)}
 			onClick={onClick}
 		>

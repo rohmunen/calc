@@ -24,6 +24,7 @@ export const useDroppable = (): [
 
 	const handlePartDrop = (droppedId: string) => {
 		const partBeingDropped = Parts.find((part) => part.id === droppedId)!;
+
 		if (constructed.find((part) => part.id === droppedId) === undefined) {
 			const dropAtIndex = constructed.findIndex(
 				(part) => part.id === draggingOver?.id

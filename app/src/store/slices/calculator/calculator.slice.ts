@@ -56,6 +56,8 @@ export const calculatorSlice = createSlice({
 				state.displayNumber = state.displayNumber + '.';
 			}
 		},
+
+		resetCalculator: () => CALCULATOR_DEFAULT_STATE,
 	},
 });
 
@@ -70,5 +72,5 @@ export const selectDisplayNumber = createSelector(
 	})
 );
 
-export const {addNumber, setOperation, addDecimalPoint} =
+export const {addNumber, setOperation, addDecimalPoint, resetCalculator} =
 	calculatorSlice.actions;

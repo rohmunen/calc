@@ -2,6 +2,7 @@ import classNames from 'classnames';
 import React from 'react';
 import {useAppSelector} from '~/src/hooks';
 import {selectDisplayNumber} from '~/src/store/slices/calculator';
+import {CalculatorMessage} from './CalculatorMessage';
 
 export const CalculatorScreen = () => {
 	const {displayNumber} = useAppSelector(selectDisplayNumber);
@@ -9,7 +10,14 @@ export const CalculatorScreen = () => {
 	const safeNumber =
 		displayNumber.length > 20
 			? parseFloat(displayNumber).toPrecision(1)
-			: parseFloat(displayNumber);
+			: String(parseFloat(displayNumber));
+
+	const display =
+		safeNumber === 'NaN' || safeNumber === 'Infinity' ? (
+			<CalculatorMessage message="Не определено" />
+		) : (
+			safeNumber
+		);
 
 	return (
 		<div
@@ -19,7 +27,7 @@ export const CalculatorScreen = () => {
 				'text-md-lg font-bold': String(safeNumber).length > 10,
 			})}
 		>
-			{safeNumber}
+			{display}
 		</div>
 	);
 };
