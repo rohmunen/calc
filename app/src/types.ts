@@ -1,4 +1,4 @@
-import {ButtonHeight, ButtonWidth, ColSpan} from './components/Button';
+import {ButtonHeight, ButtonWidth, ColSpan} from './components/Button/models';
 
 export interface ICalculatorButton {
 	symbol: string;

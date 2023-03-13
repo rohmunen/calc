@@ -1,6 +1,7 @@
 import classnames from 'classnames';
-import React, {DragEvent, useRef, useState} from 'react';
+import React, {DragEvent} from 'react';
 import {DragOver} from '~/src/types';
+import {Variant, VARIANTS_MAP} from './models';
 
 interface Props {
 	id: string;
@@ -11,18 +12,6 @@ interface Props {
 	onDragStart?: () => void;
 	onDragEnd?: () => void;
 }
-
-enum Variant {
-	DEFAULT = 'default',
-	INACTIVE = 'inactive',
-	IN_CONSTRUCTOR = 'inConstructor',
-}
-
-const VARIANTS_MAP: Record<Variant, string> = {
-	[Variant.DEFAULT]: 'shadow-md',
-	[Variant.INACTIVE]: 'opacity-50',
-	[Variant.IN_CONSTRUCTOR]: 'bg-white',
-};
 
 export const DraggableContainer = ({
 	children,
@@ -49,7 +38,7 @@ export const DraggableContainer = ({
 				onDragStart?.();
 			}}
 			onDragLeave={() => {
-				setDraggingOver(undefined)
+				setDraggingOver(undefined);
 			}}
 			onDragOver={(e) => {
 				const coords = e.currentTarget.getBoundingClientRect();

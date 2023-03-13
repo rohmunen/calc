@@ -1,6 +1,7 @@
+import {ColSpan} from '~/src/components/Button/models';
 import {useAppDispatch} from '~/src/hooks';
 import {addDecimalPoint, addNumber} from '~/src/store/slices/calculator';
-import {ColSpan} from '../../../Button';
+
 
 export const numbersButtons = [
 	{
