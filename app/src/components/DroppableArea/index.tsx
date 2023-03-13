@@ -1,5 +1,5 @@
 import classnames from 'classnames';
-import React, {useEffect} from 'react';
+import React from 'react';
 import {useAppDispatch, useAppSelector} from '~/src/hooks';
 import {
 	DroppableAreas,
@@ -36,10 +36,6 @@ export const DroppableArea = ({children, onDrop, id}: Props) => {
 	};
 
 	const {isDragging} = useAppSelector(selectIsDragging);
-
-	useEffect(() => {
-		console.log(React.Children.count(children));
-	});
 
 	return (
 		<div

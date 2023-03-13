@@ -23,34 +23,24 @@ export const useDroppable = (): [
 	const [draggingOver, setDraggingOver] = useState<DragOver | undefined>();
 
 	const handlePartDrop = (droppedId: string) => {
+		const partBeingDropped = Parts.find((part) => part.id === droppedId)!;
 		if (constructed.find((part) => part.id === droppedId) === undefined) {
 			const dropAtIndex = constructed.findIndex(
 				(part) => part.id === draggingOver?.id
 			);
 			if (dropAtIndex === -1) {
-				setConstructed((prev) => [
-					...prev,
-					Parts.find((part) => part.id === droppedId)!,
-				]);
+				setConstructed((prev) => [...prev, partBeingDropped]);
 				return;
 			}
 			if (draggingOver?.side === 'Top') {
 				setConstructed((prev) => [
 					...prev,
-					...prev.splice(
-						dropAtIndex,
-						0,
-						Parts.find((v) => v.id === droppedId)!
-					),
+					...prev.splice(dropAtIndex, 0, partBeingDropped),
 				]);
 			} else {
 				setConstructed((prev) => [
 					...prev,
-					...prev.splice(
-						dropAtIndex + 1,
-						0,
-						Parts.find((v) => v.id === droppedId)!
-					),
+					...prev.splice(dropAtIndex + 1, 0, partBeingDropped),
 				]);
 			}
 		} else {
@@ -59,17 +49,29 @@ export const useDroppable = (): [
 				(part) => part.id === draggingOver?.id
 			);
 			const copy = [...constructed];
+			if (!draggingOver) {
+				copy.splice(index, 1);
+				copy.splice(constructed.length - 1, 0, partBeingDropped);
+				setConstructed(copy);
+				return;
+			}
 			if (draggingOver?.side === 'Top') {
 				copy.splice(index, 1);
-				copy.splice(dropAtIndex, 0, Parts.find((v) => v.id === droppedId)!);
+				copy.splice(dropAtIndex, 0, partBeingDropped);
 			} else {
 				copy.splice(index, 1);
-				copy.splice(dropAtIndex + 1, 0, Parts.find((v) => v.id === droppedId)!);
+				copy.splice(dropAtIndex + 1, 0, partBeingDropped);
 			}
 
 			setConstructed(copy);
 		}
 	};
 
-	return [handlePartDrop, constructed, setConstructed, draggingOver, setDraggingOver];
+	return [
+		handlePartDrop,
+		constructed,
+		setConstructed,
+		draggingOver,
+		setDraggingOver,
+	];
 };
