@@ -7,6 +7,9 @@ import path from 'path';
 export default defineConfig({
 	root: './app/src',
 	publicDir: '../public',
+	build: {
+		outDir: '../../dist'
+	},
 	resolve: {
 		alias: {
 			'~': path.resolve(__dirname, './app'),
