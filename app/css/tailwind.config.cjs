@@ -1,3 +1,4 @@
+/* eslint-env node */
 /** @type {import('tailwindcss').Config} */
 module.exports = {
 	content: ['./app/src/index.html', './app/src/**/*.{js,jsx,ts,tsx}'],
@@ -22,6 +23,7 @@ module.exports = {
 			fontSize: {
 				sm: ['12px', {lineHeight: '14.52px'}],
 				md: ['14px', {lineHeight: '16.94px'}],
+				lg: ['36px', {lineHeight: '43.57px'}],
 			},
 		},
 	},
