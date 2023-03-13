@@ -22,7 +22,7 @@ export const CalculatorScreen = () => {
 	return (
 		<div
 			className={classNames({
-				'text-ellipsis flex items-end pb-[4px] justify-end px-[8px] rounded-[6px] bg-gray h-[52px] text-lg font-extrabold':
+				'text-ellipsis text-blue-darken flex items-end pb-[4px] justify-end px-[8px] rounded-[6px] bg-gray h-[52px] text-lg font-extrabold':
 					true,
 				'text-md-lg font-bold': String(safeNumber).length > 10,
 			})}

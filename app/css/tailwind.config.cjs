@@ -12,6 +12,7 @@ module.exports = {
 				purple: '#5D5FEF',
 				'iris-100': '#5D5FEF',
 				'light-blue-50': '#F0F9FF',
+				'blue-darken': '#111827',
 			},
 			gridTemplateColumns: {
 				operations: 'repeat(auto-fit, minmax(52px, 1fr));',
