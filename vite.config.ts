@@ -5,11 +5,7 @@ import path from 'path';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-	root: './app/src',
 	publicDir: '../public',
-	build: {
-		outDir: '../../dist'
-	},
 	resolve: {
 		alias: {
 			'~': path.resolve(__dirname, './app'),
@@ -17,5 +13,4 @@ export default defineConfig({
 	},
 	css: {postcss: './app/css/postcss.config.js'},
 	plugins: [svgr(), react()],
-	base: '/calc/',
 });
