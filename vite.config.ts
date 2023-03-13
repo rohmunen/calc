@@ -14,4 +14,5 @@ export default defineConfig({
 	},
 	css: {postcss: './app/css/postcss.config.js'},
 	plugins: [svgr(), react()],
+	base: '/calc/',
 });
