@@ -4,13 +4,15 @@ import svgr from 'vite-plugin-svgr';
 import path from 'path';
 
 // https://vitejs.dev/config/
-export default defineConfig({
-	publicDir: '../public',
-	resolve: {
-		alias: {
-			'~': path.resolve(__dirname, './app'),
+export default ({mode}) =>
+	defineConfig({
+		publicDir: '../public',
+		resolve: {
+			alias: {
+				'~': path.resolve(__dirname, './app'),
+			},
 		},
-	},
-	css: {postcss: './app/css/postcss.config.js'},
-	plugins: [svgr(), react()],
-});
+		css: {postcss: './app/css/postcss.config.js'},
+		plugins: [svgr(), react()],
+		base: mode === 'development' ? './' : '/calc/',
+	});
