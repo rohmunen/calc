@@ -1,4 +1,4 @@
-import classnames from 'classnames';
+import classNames from 'classnames';
 import React from 'react';
 import {useAppDispatch, useAppSelector} from '~/src/hooks';
 import {
@@ -42,8 +42,8 @@ export const DroppableArea = ({children, onDrop, id}: Props) => {
 			onDrop={handleDrop}
 			onDragOver={handleDragOver}
 			onDragLeave={handleDragLeave}
-			className={classnames({
-				'flex flex-col gap-[8px] max-w-[250px] w-full border-2 border-dashed rounded-[6px] border-transparent':
+			className={classNames({
+				'flex flex-col gap-[8px] max-w-[244px] w-full border-2 border-dashed rounded-[6px] border-transparent':
 					true,
 				'!border-gray-darken': React.Children.count(children) === 0,
 				'bg-light-blue-50':

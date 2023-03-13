@@ -1,5 +1,5 @@
 import React from 'react';
-import classnames from 'classnames';
+import classNames from 'classnames';
 import {
 	ButtonWidth,
 	ButtonHeight,
@@ -30,7 +30,7 @@ export const Button = ({
 }: Props) => {
 	return (
 		<button
-			className={classnames(
+			className={classNames(
 				BUTTON_SIZE_MAP[width],
 				BUTTON_HEIGHT_MAP[height],
 				COL_SPAN_MAP[colSpan],

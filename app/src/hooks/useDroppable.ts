@@ -60,7 +60,7 @@ export const useDroppable = (): [
 				copy.splice(dropAtIndex, 0, partBeingDropped);
 			} else {
 				copy.splice(index, 1);
-				copy.splice(dropAtIndex + 1, 0, partBeingDropped);
+				copy.splice(dropAtIndex, 0, partBeingDropped);
 			}
 
 			setConstructed(copy);

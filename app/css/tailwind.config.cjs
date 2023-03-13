@@ -23,6 +23,7 @@ module.exports = {
 			fontSize: {
 				sm: ['12px', {lineHeight: '14.52px'}],
 				md: ['14px', {lineHeight: '16.94px'}],
+				'md-lg': ['19px', {lineHeight: '22.99px'}],
 				lg: ['36px', {lineHeight: '43.57px'}],
 			},
 		},

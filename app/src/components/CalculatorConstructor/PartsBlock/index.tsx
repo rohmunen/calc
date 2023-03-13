@@ -1,7 +1,6 @@
 import _ from 'lodash';
 import React from 'react';
 import {useAppDispatch} from '~/src/hooks';
-import {useDroppable} from '~/src/hooks/useDroppable';
 import {setIsDragging, resetIsDragging} from '~/src/store/slices/ui';
 import {DragOver} from '~/src/types';
 import {DraggableContainer} from '../../DraggableContainer';

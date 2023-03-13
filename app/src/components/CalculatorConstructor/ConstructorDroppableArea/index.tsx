@@ -57,6 +57,7 @@ export const ConstructorDroppableArea = ({
 							<DropPositionLine position={DropPositionLine.position.BOT} />
 						)}
 					<DraggableContainer
+						unDraggable={part.id === 'screen'}
 						setDraggingOver={setDraggingOver}
 						variant={DraggableContainer.variant.IN_CONSTRUCTOR}
 						id={part.id}

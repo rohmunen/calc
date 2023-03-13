@@ -46,7 +46,7 @@ export const CalculatorConstructor = () => {
 						/>
 					</>
 				) : (
-					<div className="max-w-[242px] w-full flex flex-col gap-[8px]">
+					<div className="max-w-[244px] w-full flex flex-col gap-[8px]">
 						{constructed.map((part) => part.element)}
 					</div>
 				)}

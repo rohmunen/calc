@@ -1,4 +1,4 @@
-import classnames from 'classnames';
+import classNames from 'classnames';
 import React, {DragEvent} from 'react';
 import {DragOver} from '~/src/types';
 import {Variant, VARIANTS_MAP} from './models';
@@ -11,6 +11,7 @@ interface Props {
 	setDraggingOver: React.Dispatch<React.SetStateAction<DragOver | undefined>>;
 	onDragStart?: () => void;
 	onDragEnd?: () => void;
+	unDraggable?: boolean;
 }
 
 export const DraggableContainer = ({
@@ -21,6 +22,7 @@ export const DraggableContainer = ({
 	setDraggingOver,
 	onDragStart,
 	onDragEnd,
+	unDraggable,
 }: Props) => {
 	const handleDragStart = (e: DragEvent<HTMLDivElement>, id: string) => {
 		e.dataTransfer.setData('id', `${id}`);
@@ -48,9 +50,13 @@ export const DraggableContainer = ({
 					side: dragOverPosition > coords.height / 2 ? 'Top' : 'Bottom',
 				});
 			}}
-			draggable={variant !== Variant.INACTIVE}
-			className={classnames(
-				'rounded-[4px] p-[4px] w-full',
+			draggable={!unDraggable && variant !== Variant.INACTIVE}
+			className={classNames(
+				{
+					'rounded-[4px] p-[4px] w-full': true,
+					'cursor-not-allowed': unDraggable,
+				},
+
 				VARIANTS_MAP[variant]
 			)}
 		>
