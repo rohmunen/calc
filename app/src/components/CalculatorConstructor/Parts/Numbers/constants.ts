@@ -1,49 +1,51 @@
+import {useAppDispatch} from '~/src/hooks';
+import {addDecimalPoint, addNumber} from '~/src/store/slices/calculator';
 import {ColSpan} from '../../../Button';
 
-export const numbersButtons: ICalculatorButton[] = [
+export const numbersButtons = [
 	{
 		symbol: '7',
-		onClick: () => {},
+		action: addNumber(7),
 	},
 	{
 		symbol: '8',
-		onClick: () => {},
+		action: addNumber(8),
 	},
 	{
 		symbol: '9',
-		onClick: () => {},
+		action: addNumber(9),
 	},
 	{
 		symbol: '4',
-		onClick: () => {},
+		action: addNumber(4),
 	},
 	{
 		symbol: '5',
-		onClick: () => {},
+		action: addNumber(5),
 	},
 	{
 		symbol: '6',
-		onClick: () => {},
+		action: addNumber(6),
 	},
 	{
 		symbol: '1',
-		onClick: () => {},
+		action: addNumber(1),
 	},
 	{
 		symbol: '2',
-		onClick: () => {},
+		action: addNumber(2),
 	},
 	{
 		symbol: '3',
-		onClick: () => {},
+		action: addNumber(3),
 	},
 	{
 		symbol: '0',
-		onClick: () => {},
 		colSpan: ColSpan.TWO,
+		action: addNumber(0),
 	},
 	{
 		symbol: ',',
-		onClick: () => {},
+		action: addDecimalPoint(),
 	},
 ];
