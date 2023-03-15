@@ -25,30 +25,52 @@ export const calculatorSlice = createSlice({
 						? String(action.payload)
 						: state.displayNumber + action.payload;
 			}
+			state.lastInput = parseFloat(state.displayNumber);
 		},
 
 		setOperation(state, action: PayloadAction<Operations>) {
-			if (!(action.payload === '=') || state.lastInput === null) {
-				state.lastInput = parseFloat(state.displayNumber);
-			}
-			if (state.accumulatedValue === null) {
-				state.accumulatedValue = state.lastInput;
-			} else {
-				if (state.operation) {
-					const sum = operate(
-						state.operation,
-						state.accumulatedValue,
-						state.lastInput
-					);
-					state.accumulatedValue = sum;
-					state.displayNumber = String(sum);
-				}
-			}
-			if (!(action.payload === '=')) {
-				state.lastInput = null;
-				state.expectsOperand = true;
+			if (state.operation === null) {
 				state.operation = action.payload;
 			}
+
+			if (state.expectsOperand) {
+				state.operation = action.payload;
+				return;
+			}
+
+			state.expectsOperand = true;
+
+			if (state.accumulatedValue === null) {
+				state.accumulatedValue = parseFloat(state.displayNumber);
+				return;
+			}
+
+			const sum = operate(
+				state.operation,
+				state.accumulatedValue,
+				parseFloat(state.displayNumber),
+			);
+
+			state.accumulatedValue = sum;
+			state.displayNumber = String(sum);
+
+			state.operation = action.payload;
+		},
+
+		handleEqualsClick(state) {
+			if (!state.operation || !state.accumulatedValue || !state.lastInput) {
+				return;
+			}
+
+			const sum = operate(
+				state.operation,
+				state.accumulatedValue,
+				state.lastInput
+			);
+
+			state.accumulatedValue = sum;
+			state.displayNumber = String(sum);
+			state.expectsOperand = true;
 		},
 
 		addDecimalPoint(state) {
@@ -72,5 +94,10 @@ export const selectDisplayNumber = createSelector(
 	})
 );
 
-export const {addNumber, setOperation, addDecimalPoint, resetCalculator} =
-	calculatorSlice.actions;
+export const {
+	addNumber,
+	setOperation,
+	handleEqualsClick,
+	addDecimalPoint,
+	resetCalculator,
+} = calculatorSlice.actions;

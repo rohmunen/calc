@@ -14,8 +14,6 @@ export const operate = (
 			return accumulatedValue * displayedValue;
 		case '/':
 			return accumulatedValue / displayedValue;
-		case '=':
-      return displayedValue;
 		default:
 			return displayedValue;
 	}

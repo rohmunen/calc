@@ -1,6 +1,6 @@
 import React from 'react';
 import {useAppDispatch} from '~/src/hooks';
-import {setOperation} from '~/src/store/slices/calculator';
+import {handleEqualsClick, setOperation} from '~/src/store/slices/calculator';
 import {Button} from '../../../Button';
 
 export const EqualityButton = () => {
@@ -11,7 +11,7 @@ export const EqualityButton = () => {
 			color={Button.color.PURPLE}
 			height={Button.height.LG}
 			onClick={() => {
-				dispatch(setOperation('='));
+				dispatch(handleEqualsClick());
 			}}
 		>
 			=

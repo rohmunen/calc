@@ -6,4 +6,4 @@ export interface ICalculatorSlice {
 	operation: Operations;
 }
 
-export type Operations = '+' | '-' | '/' | 'x' | '=' | null;
+export type Operations = '+' | '-' | '/' | 'x' | null;
