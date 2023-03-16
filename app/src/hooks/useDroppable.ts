@@ -1,6 +1,7 @@
 import {useState} from 'react';
 import {Parts} from '../components/CalculatorConstructor/Parts';
 import {DragOver} from '../types';
+import {insertArrayAtPos} from '../utils';
 
 export const useDroppable = (): [
 	handlePartDrop: (droppedId: string) => void,
@@ -24,7 +25,6 @@ export const useDroppable = (): [
 
 	const handlePartDrop = (droppedId: string) => {
 		const partBeingDropped = Parts.find((part) => part.id === droppedId)!;
-
 		if (constructed.find((part) => part.id === droppedId) === undefined) {
 			const dropAtIndex = constructed.findIndex(
 				(part) => part.id === draggingOver?.id
@@ -35,37 +35,36 @@ export const useDroppable = (): [
 			}
 			if (draggingOver?.side === 'Top') {
 				setConstructed((prev) => [
-					...prev,
-					...prev.splice(dropAtIndex, 0, partBeingDropped),
+					...insertArrayAtPos(prev, dropAtIndex, partBeingDropped),
 				]);
 			} else {
 				setConstructed((prev) => [
-					...prev,
-					...prev.splice(dropAtIndex + 1, 0, partBeingDropped),
+					...insertArrayAtPos(prev, dropAtIndex + 1, partBeingDropped),
 				]);
 			}
-		} else {
-			const index = constructed.findIndex((part) => part.id === droppedId);
-			const dropAtIndex = constructed.findIndex(
-				(part) => part.id === draggingOver?.id
-			);
-			const copy = [...constructed];
-			if (!draggingOver) {
-				copy.splice(index, 1);
-				copy.splice(constructed.length - 1, 0, partBeingDropped);
-				setConstructed(copy);
-				return;
-			}
-			if (draggingOver?.side === 'Top') {
-				copy.splice(index, 1);
-				copy.splice(dropAtIndex, 0, partBeingDropped);
-			} else {
-				copy.splice(index, 1);
-				copy.splice(dropAtIndex, 0, partBeingDropped);
-			}
-
-			setConstructed(copy);
+			return;
 		}
+
+		const index = constructed.findIndex((part) => part.id === droppedId);
+		const dropAtIndex = constructed.findIndex(
+			(part) => part.id === draggingOver?.id
+		);
+		const copy = [...constructed];
+		if (!draggingOver) {
+			copy.splice(index, 1);
+			copy.splice(constructed.length - 1, 0, partBeingDropped);
+			setConstructed(copy);
+			return;
+		}
+		if (draggingOver?.side === 'Top') {
+			copy.splice(index, 1);
+			copy.splice(dropAtIndex, 0, partBeingDropped);
+		} else {
+			copy.splice(index, 1);
+			copy.splice(dropAtIndex, 0, partBeingDropped);
+		}
+
+		setConstructed(copy);
 	};
 
 	return [

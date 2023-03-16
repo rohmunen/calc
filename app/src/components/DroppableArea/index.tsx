@@ -22,6 +22,7 @@ export const DroppableArea = ({children, onDrop, id}: Props) => {
 
 	const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
 		e.preventDefault();
+		e.stopPropagation();
 		onDrop(e.dataTransfer.getData('id'));
 		dispatch(resetIsOver());
 	};
