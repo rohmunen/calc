@@ -2,7 +2,7 @@ import React from 'react';
 import { useAppDispatch } from '~/src/hooks';
 import { Button } from '../../../../components/Button';
 import { operationsButtons } from './constants';
-import { OperationsLayout } from './OperationsLayout';
+import { OperationsLayout } from '../../Layouts';
 
 export const Operations = () => {
   const dispatch = useAppDispatch();
