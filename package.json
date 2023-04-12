@@ -13,10 +13,10 @@
     "format": "prettier --write ./app/**/*.{js,jsx,ts,tsx,css,md,json} --config ./.prettierrc"
   },
   "lint-staged": {
-    "app/src/**/*.{js, cjs, ts, jsx, tsx}": [
+    "app/src/**/*.{js,cjs,ts,jsx,tsx}": [
       "yarn lint:fix"
     ],
-    "app/src/**/*.{js, ts, jsx, tsx, css}": [
+    "app/src/**/*.{js,ts,jsx,tsx,css}": [
       "yarn format"
     ]
   },
