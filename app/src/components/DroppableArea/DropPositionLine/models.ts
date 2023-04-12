@@ -1,4 +1,4 @@
 export enum Position {
-	TOP = 'top',
-	BOT = 'bot',
+  TOP = 'top',
+  BOT = 'bot'
 }

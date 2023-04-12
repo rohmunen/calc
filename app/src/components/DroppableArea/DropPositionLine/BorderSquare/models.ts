@@ -1,4 +1,4 @@
 export enum Position {
-	LEFT = 'left',
-	RIGHT = 'right',
+  LEFT = 'left',
+  RIGHT = 'right'
 }

@@ -1,9 +1,9 @@
 export interface ICalculatorSlice {
   accumulatedValue: number | null;
   expectsOperand: boolean;
-	displayNumber: string;
+  displayNumber: string;
   lastInput: number | null;
-	operation: Operations;
+  operation: Operations;
 }
 
 export type Operations = '+' | '-' | '/' | 'x' | null;

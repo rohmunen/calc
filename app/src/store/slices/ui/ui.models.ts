@@ -1,4 +1,4 @@
-export type DroppableAreas = 'calculatorConstructor'
+export type DroppableAreas = 'calculatorConstructor';
 
 export interface isDragging {
   dragging: boolean;

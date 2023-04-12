@@ -3,7 +3,7 @@
 @import 'tailwindcss/utilities';
 
 @layer utilities {
-	.disable-buttons button {
-		pointer-events: none;
-	}
+  .disable-buttons button {
+    pointer-events: none;
+  }
 }
