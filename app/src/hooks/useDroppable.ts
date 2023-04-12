@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Parts } from '../components/CalculatorConstructor/Parts';
+import { Parts } from '../feature/Calculator/Parts';
 import { DragOver } from '../types';
 import { insertArrayAtPos } from '../utils';
 
