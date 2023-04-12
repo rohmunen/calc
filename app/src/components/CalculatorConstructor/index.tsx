@@ -27,8 +27,7 @@ export const CalculatorConstructor = () => {
       <div
         className={`flex justify-end max-[700px]:items-center max-[700px]:flex-col gap-[56px] ${
           selectedTab === 2 && 'disable-buttons'
-        }`}
-      >
+        }`}>
         {selectedTab === 2 ? (
           <>
             <PartsBlock constructed={constructed} setDraggingOver={setDraggingOver} />
