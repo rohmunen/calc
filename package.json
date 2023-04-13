@@ -17,8 +17,7 @@
       "yarn lint:fix"
     ],
     "app/src/**/*.{js,ts,jsx,tsx,css}": [
-      "yarn format",
-      "git add"
+      "yarn format"
     ]
   },
   "dependencies": {
