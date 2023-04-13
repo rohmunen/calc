@@ -2,13 +2,13 @@ import React from 'react';
 import { ISelected } from '../../types';
 import { Tab } from './Tab';
 
-interface Props {
-  tabs: ISelected<number>[];
-  selected: number;
-  setSelected: React.Dispatch<React.SetStateAction<number>>;
+interface Props<T> {
+  tabs: ISelected<T>[];
+  selected: T;
+  setSelected: React.Dispatch<React.SetStateAction<T>>;
 }
 
-export const TabsBar = ({ tabs, selected, setSelected }: Props) => {
+export const TabsBar = <T,>({ tabs, selected, setSelected }: Props<T>) => {
   return (
     <div className="flex bg-gray rounded-[6px] p-[1px] h-[38px]">
       {tabs.map((tab) => (

@@ -7,10 +7,11 @@ import { PartsBlock } from './PartsBlock';
 import { ConstructorDroppableArea } from './ConstructorDroppableArea';
 import { useAppDispatch } from '~/src/hooks';
 import { resetCalculator } from '~/src/store/slices/calculator';
+import { CalculatorTab } from './models';
 
 export const CalculatorConstructor = () => {
   const dispatch = useAppDispatch();
-  const [selectedTab, setSelectedTab] = useState(2);
+  const [selectedTab, setSelectedTab] = useState(CalculatorTab.CONSTRUCTOR);
 
   useEffect(() => {
     dispatch(resetCalculator());
@@ -26,9 +27,9 @@ export const CalculatorConstructor = () => {
       </div>
       <div
         className={`flex justify-end max-[700px]:items-center max-[700px]:flex-col gap-[56px] ${
-          selectedTab === 2 && 'disable-buttons'
+          selectedTab === CalculatorTab.CONSTRUCTOR && 'disable-buttons'
         }`}>
-        {selectedTab === 2 ? (
+        {selectedTab === CalculatorTab.CONSTRUCTOR ? (
           <>
             <PartsBlock constructed={constructed} setDraggingOver={setDraggingOver} />
             <ConstructorDroppableArea
